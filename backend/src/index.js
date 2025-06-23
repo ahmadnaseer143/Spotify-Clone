@@ -1,5 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
+
+import { connectToDB } from "./lib/db.js";
+
 import userRoutes from "./routes/user.route.js";
 import adminRoutes from "./routes/admin.route.js";
 import authRoutes from "./routes/auth.route.js";
@@ -20,4 +23,5 @@ app.use("/api/stats", statRoutes);
 
 app.listen(PORT, () => {
   console.log("Server Listening at port " + PORT);
+  connectToDB();
 });
