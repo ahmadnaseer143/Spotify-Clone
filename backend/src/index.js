@@ -39,6 +39,18 @@ app.use("/api/songs", songRoutes);
 app.use("/api/albums", albumRoutes);
 app.use("/api/stats", statRoutes);
 
+//common error handler
+app.use((error, req, res, next) => {
+  res
+    .status(500)
+    .json({
+      message:
+        process.env.NODE_ENV === "production"
+          ? "Internal server error"
+          : error.message,
+    });
+});
+
 app.listen(PORT, () => {
   console.log("Server Listening at port " + PORT);
   connectToDB();
