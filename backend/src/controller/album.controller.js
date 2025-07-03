@@ -1,10 +1,10 @@
 import { Album } from "../models/album.model.js";
+
 export const getAllAlbums = async (req, res, next) => {
   try {
-    const albums = Album.find();
+    const albums = await Album.find();
     res.status(200).json(albums);
   } catch (error) {
-    console.log("Error in album controller getAllAlbums");
     next(error);
   }
 };
