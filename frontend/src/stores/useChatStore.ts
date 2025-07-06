@@ -2,7 +2,7 @@ import { axiosInstance } from "@/lib/axios";
 import { create } from "zustand";
 
 interface ChatStore {
-  users: [];
+  users: any[];
   isLoading: boolean;
   error: string | null;
 
