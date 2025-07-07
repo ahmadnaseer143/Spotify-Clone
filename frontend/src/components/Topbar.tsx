@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import SignInOAuthButtons from "./SignInOAuthButtons";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "./ui/button";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 const Topbar = () => {
-  const isAdmin = false;
+  const { isAdmin } = useAuthStore();
 
   return (
     <div
