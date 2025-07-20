@@ -13,11 +13,16 @@ import authRoutes from "./routes/auth.route.js";
 import songRoutes from "./routes/songs.route.js";
 import albumRoutes from "./routes/albums.route.js";
 import statRoutes from "./routes/stats.route.js";
+import { createServer } from "http";
+import { initializeSocket } from "./lib/socket.js";
 dotenv.config();
 
 const __dirname = path.resolve();
 const app = express();
 const PORT = process.env.PORT;
+
+const httpServer = createServer(app);
+initializeSocket(httpServer);
 
 app.use(
   cors({
@@ -57,7 +62,7 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log("Server Listening at port " + PORT);
   connectToDB();
 });
